@@ -15,13 +15,5 @@ abstract class Model {
         return dead;
     }
 
-    public void attack(Model attacker, Model opponent) {
-        opponent.health -= attacker.damage;
-        System.out.println(attacker.name + " hit for: " + attacker.damage);
-        System.out.println(opponent.name + " now have " + opponent.health + " HP");
-
-        if(opponent.health<=0) {
-            dead = true;
-        }
-    }
+    abstract void attack(Model opponent);
 }

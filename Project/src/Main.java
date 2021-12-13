@@ -4,8 +4,8 @@ public class Main {
         Hero hero = new Hero("Bonzo", 5, 30);
 
         do {
-            hero.attack(hero, enemy);
-            enemy.attack(enemy, hero);
+            hero.attack(enemy);
+            enemy.attack(hero);
         }
         while(!hero.isDead() || enemy.isDead());
     }
