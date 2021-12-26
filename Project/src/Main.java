@@ -1,12 +1,14 @@
+import Arena.*;
+import Enemies.Enemy;
+import Heroes.Warrior;
+
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
-        Enemy enemy = new Enemy("Zombie", 2, 10);
-        Hero hero = new Hero("Bonzo", 5, 30);
+        Arena arena = new Arena();
 
-        do {
-            hero.attack(enemy);
-            enemy.attack(hero);
-        }
-        while(!hero.isDead() || enemy.isDead());
+        arena.createArena();
+
     }
 }
