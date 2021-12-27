@@ -47,11 +47,11 @@ public abstract class Hero implements Entity {
     }
 
     public void attack(Enemy enemy) {
-        Attack attack = new Attack();
+        Combat combat = new Combat();
 
         if(isAlive()) {
-            enemy.damaged(attack.chooseSkill(skills));
-            attack.combatLog(enemy, skills.get(attack.getChosenAttack()-1));
+            enemy.damaged(combat.chooseSkill(skills));
+            combat.combatLog(enemy, skills.get(combat.getChosenAttack()));
 
             if(enemy.currentHealth() <= 0.0) {
                 System.out.print(ConsoleColors.RED);

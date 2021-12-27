@@ -30,9 +30,11 @@ public class Arena {
             }
 
             enemies.clear();
+            defeatedHordes++;
             horde.setHowManyEnemies();
         } while(hero.isAlive());
 
+        System.out.println("Hordes defeated: " + (defeatedHordes-1));
         System.out.print(ConsoleColors.RED_UNDERLINED + "" + ConsoleColors.RED_BOLD);
         System.out.println("GAME OVER");
         System.out.println(ConsoleColors.RESET);

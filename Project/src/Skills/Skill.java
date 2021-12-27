@@ -16,4 +16,5 @@ public class Skill {
     public float getSkillDamage() {
         return damage;
     }
+
 }
