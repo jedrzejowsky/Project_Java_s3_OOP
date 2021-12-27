@@ -6,7 +6,7 @@ import Log.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Attack {
+public class Combat {
 
     int chosenAttack;
     Scanner scanner = new Scanner(System.in);
@@ -32,7 +32,7 @@ public class Attack {
     }
 
     public int getChosenAttack() {
-        return chosenAttack;
+        return chosenAttack-1;
     }
 
     public void combatLog(Entity enemy, Skill skill) {
