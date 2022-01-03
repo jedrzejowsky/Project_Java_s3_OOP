@@ -1,12 +1,12 @@
 package Heroes;
 
-import Skills.Skill;
+import SkillsAndUpgrades.Skill;
 
 public class Warrior extends Hero {
 
     public Warrior(String name) {
         super(name);
-        this.health = 10;
+        this.health = 50;
         this.alive = true;
         skills();
     }
@@ -20,4 +20,5 @@ public class Warrior extends Hero {
     public Skill getSkill() {
         return skills.get(1);
     }
+
 }

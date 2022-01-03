@@ -1,8 +1,8 @@
-package Skills;
+package SkillsAndUpgrades;
 
 public class Skill {
-    private String name;
-    private float damage;
+    protected String name;
+    protected float damage;
 
     public Skill(String name, float damage) {
         this.name = name;
@@ -15,6 +15,10 @@ public class Skill {
 
     public float getSkillDamage() {
         return damage;
+    }
+
+    public void upgradeDamage(float upgrade) {
+        damage += upgrade;
     }
 
 }
