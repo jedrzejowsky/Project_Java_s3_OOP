@@ -2,18 +2,21 @@ package Enemies;
 
 import Heroes.Hero;
 import Interfaces.Entity;
+import Log.Log;
+
+import java.util.Random;
 
 public abstract class Enemy implements Entity {
     protected String name;
-    public float damage;
-    public float health;
-    private boolean alive;
+    protected float damage;
+    protected float health;
+    Random random = new Random();
+    Log log = new Log();
 
     Enemy() {
         this.name = getClass().getSimpleName();
         this.damage = 0;
         this.health = 0;
-        this.alive = true;
     }
 
     @Override
@@ -26,14 +29,6 @@ public abstract class Enemy implements Entity {
         return health;
     }
 
-    public boolean isAlive() {
-        return alive;
-    }
-
-    public void died() {
-        alive = false;
-    }
-
     public float currentHealth() {
         return health;
     }
@@ -43,14 +38,17 @@ public abstract class Enemy implements Entity {
     }
 
     public void attack(Hero hero) {
-        if(isAlive()) {
-            hero.damaged(damage);
-            System.out.println("Hero got hit for: " + damage + ", curr heal: " + hero.currentHealth());
+        hero.damaged(damage);
+        log.info(hero.getName() + " got hit for: " + damage + ", curr heal: " + hero.currentHealth());
 
-            if(hero.currentHealth() <= 0.0) {
-                System.out.println("hero died");
-                hero.died();
-            }
+        if(hero.currentHealth() <= 0.0) {
+            log.died(hero);
+            hero.died();
         }
     }
+
+    public int dropMoney() {
+        return random.nextInt(7-2)+2;
+    }
+
 }

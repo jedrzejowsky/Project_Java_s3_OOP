@@ -3,12 +3,15 @@ package Arena;
 import Enemies.*;
 import Heroes.*;
 import Log.*;
+import SkillsAndUpgrades.Merchant;
 
 import java.util.ArrayList;
 
 public class Arena {
     Log log = new Log();
     Horde horde = new Horde();
+    Merchant merchant = new Merchant();
+    Combat combat = new Combat();
     int defeatedHordes=0;
 
     ArrayList<Enemy> enemies = new ArrayList<>();
@@ -18,26 +21,26 @@ public class Arena {
     public void createArena() {
         do {
             horde.create(enemies, horde.getHowManyEnemies());
+            log.info("Wave: " + (defeatedHordes+1));
 
-            for(Enemy enemy : enemies) {
-                do {
-                    if(hero.isAlive()) {
-                        hero.attack(enemy);
-                        enemy.attack(hero);
-                    }
+            do {
+                hero.attack(enemies, combat.chooseEnemy(enemies));
+                if(!enemies.isEmpty()) {
+                    combat.attackingEnemy(enemies).attack(hero);
                 }
-                while(enemy.isAlive() && hero.isAlive());
-            }
+            } while(hero.isAlive() && !enemies.isEmpty());
 
-            enemies.clear();
-            defeatedHordes++;
-            horde.setHowManyEnemies();
+            if(hero.isAlive()) {
+                defeatedHordes++;
+                merchant.upgrade(hero);
+                horde.setHowManyEnemies();
+            }
         } while(hero.isAlive());
 
-        System.out.println("Hordes defeated: " + (defeatedHordes-1));
-        System.out.print(ConsoleColors.RED_UNDERLINED + "" + ConsoleColors.RED_BOLD);
-        System.out.println("GAME OVER");
-        System.out.println(ConsoleColors.RESET);
+        //statystyki przerzucic pozniej zeby pokazywalo z innej klasy
+        log.info("Hordes defeated: " + defeatedHordes);
+        log.info("Money gathered: " + hero.getGatheredMoney());
+        log.gameOver();
     }
 
 }

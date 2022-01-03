@@ -5,6 +5,5 @@ public class Main {
         Arena arena = new Arena();
 
         arena.createArena();
-
     }
 }
