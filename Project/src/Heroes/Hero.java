@@ -74,8 +74,6 @@ public abstract class Hero implements Entity {
         skills.add(skill);
     }
 
-    abstract void skills();
-
     public int getGatheredMoney() {
         return gatheredMoney;
     }
@@ -97,4 +95,5 @@ public abstract class Hero implements Entity {
         return skills;
     }
 
+    abstract void skills();
 }

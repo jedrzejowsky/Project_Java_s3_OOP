@@ -62,8 +62,11 @@ public class Upgrade {
             hero.getAllSkills().get(choice-1).upgradeDamage(0.5f);
             hero.buy(10);
         }
-        else if(hero.getGatheredMoney()<10){
+        else if(hero.getGatheredMoney()<10 && run){
             log.info("Not enough money!");
+        }
+        else if(!run) {
+            log.info("");
         }
     }
 
@@ -101,14 +104,19 @@ public class Upgrade {
 
             } while((choice < 1) || (choice > learnableSkillsWarrior.size()) && run);
 
-           if(run) {
-               log.info("Learned " + learnableSkillsWarrior.get(choice-1).getSkillName() + "!");
-               hero.buySkill(learnableSkillsWarrior.get(choice-1), learnableSkillsWarrior.get(choice-1).getSkillPrice());
-               learnableSkillsWarrior.remove(choice-1);
-           }
-           else {
-               log.info("Not enough money!");
-           }
+            if(run) {
+                if(learnableSkillsWarrior.get(choice-1).getSkillPrice()<=hero.getGatheredMoney()) {
+                    log.info("Learned " + learnableSkillsWarrior.get(choice-1).getSkillName() + "!");
+                    hero.buySkill(learnableSkillsWarrior.get(choice-1), learnableSkillsWarrior.get(choice-1).getSkillPrice());
+                    learnableSkillsWarrior.remove(choice-1);
+                }
+                else {
+                    log.info("Not enough money!");
+                }
+            }
+            else {
+                log.info("");
+            }
         }
 
         /*else if(hero instanceof Mage) {
