@@ -24,7 +24,7 @@ public class Arena {
             log.info("Wave: " + (defeatedHordes+1));
 
             do {
-                hero.attack(enemies, combat.chooseEnemy(enemies));
+                combat.chooseAction(hero, enemies);
                 if(!enemies.isEmpty()) {
                     combat.attackingEnemy(enemies).attack(hero);
                 }

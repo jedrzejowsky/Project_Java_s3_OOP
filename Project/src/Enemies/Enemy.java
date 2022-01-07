@@ -29,19 +29,15 @@ public abstract class Enemy implements Entity {
         return health;
     }
 
-    public float currentHealth() {
-        return health;
-    }
-
     public void damaged(float damage) {
         health -= damage;
     }
 
     public void attack(Hero hero) {
         hero.damaged(damage);
-        log.info(hero.getName() + " got hit for: " + damage + ", curr heal: " + hero.currentHealth());
+        log.info(hero.getName() + " got hit for: " + damage + ", curr heal: " + hero.getHealth());
 
-        if(hero.currentHealth() <= 0.0) {
+        if(hero.getHealth() <= 0.0) {
             log.died(hero);
             hero.died();
         }

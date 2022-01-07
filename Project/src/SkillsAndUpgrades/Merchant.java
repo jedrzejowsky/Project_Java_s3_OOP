@@ -27,11 +27,11 @@ public class Merchant {
 
         do {
             log.info("What you want: ");
-            log.availableMoney(hero);
+            log.heroMoneyAndHealth(hero);
             log.info("[1] Buy potion");
             log.info("[2] Learn new skill");
             log.info("[3] Upgrade skill");
-            log.info("[4] Upgrade health (+0.5HP, 5$)");
+            log.info("[4] Upgrade health (+1.0HP, 5$)");
             log.info("[5] Next Wave");
 
             log.userChooses();
@@ -43,13 +43,13 @@ public class Merchant {
             }
 
             switch(choice) {
-                //case 1 -> upgrade.buyPotion;
+                case 1 -> upgrade.buyPotion(hero);
                 case 2 -> upgrade.learnNewSkill(hero);
                 case 3 -> upgrade.upgradeSkill(hero);
                 case 4 -> upgrade.upgradeHealth(hero);
                 case 5 -> run = false;
             }
         } while(run);
-
     }
+
 }

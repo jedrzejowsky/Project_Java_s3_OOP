@@ -10,16 +10,18 @@ import java.util.ArrayList;
 
 public abstract class Hero implements Entity {
     protected String name;
-    protected float health;
+    protected float baseHealth;
+    protected float currentHealth;
     protected boolean alive;
     protected int gatheredMoney = 0;
 
     protected ArrayList<Skill> skills = new ArrayList<>();
     Log log = new Log();
+    Inventory inventory = new Inventory();
 
     Hero(String name) {
         this.name = name;
-        this.health = 0;
+        this.baseHealth = 0;
         this.alive = true;
     }
 
@@ -30,7 +32,7 @@ public abstract class Hero implements Entity {
 
     @Override
     public float getHealth() {
-        return health;
+        return currentHealth;
     }
 
     public boolean isAlive() {
@@ -41,12 +43,12 @@ public abstract class Hero implements Entity {
         alive = false;
     }
 
-    public float currentHealth() {
-        return health;
+    public float getBaseHealth() {
+        return baseHealth;
     }
 
     public void damaged(float damage) {
-        health -= damage;
+        currentHealth -= damage;
     }
 
     public void attack(ArrayList<Enemy> enemies, Enemy enemy) {
@@ -56,7 +58,7 @@ public abstract class Hero implements Entity {
         enemy.damaged(combat.chooseSkill(skills));
         combat.combatLog(enemy, skills.get(combat.getChosenSkill()));
 
-        if(enemy.currentHealth() <= 0.0) {
+        if(enemy.getHealth() <= 0.0) {
             log.died(enemy);
             collectMoney(enemy.dropMoney());
             enemies.remove(enemy);
@@ -88,11 +90,23 @@ public abstract class Hero implements Entity {
 
     public void upgradeHealth(float upgrade, int price) {
         gatheredMoney -= price;
-        health += upgrade;
+        baseHealth += upgrade;
+    }
+
+    public void heal(float healingValue) {
+        currentHealth += baseHealth * (healingValue/100);
+
+        if(currentHealth>baseHealth) {
+            currentHealth = baseHealth;
+        }
     }
 
     public ArrayList<Skill> getAllSkills() {
         return skills;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 
     abstract void skills();

@@ -15,16 +15,61 @@ public class Upgrade {
 
     public void upgradeHealth(Hero hero) {
         if(hero.getGatheredMoney() >= 5) {
-            hero.upgradeHealth(0.5f, 5);
-            System.out.println("Health upgraded.");
+            hero.upgradeHealth(1.0f, 5);
+            log.info("Health upgraded.");
+            log.info("Max HP: " + hero.getBaseHealth());
         }
         else {
-            System.out.println("You don't have enough money");
+            log.info("You don't have enough money");
+        }
+    }
+
+    public void buyPotion(Hero hero) {
+        log.info("Which potion would you like to buy:");
+        boolean run = true;
+        String choose;
+        int choice = 0;
+        int price = 0;
+
+        do {
+            log.potionsToBuy(hero);
+            log.info("[4] Leave");
+            log.userChooses();
+
+            try {
+                choose = scanner.nextLine();
+                choice = Integer.parseInt(choose);
+            } catch(NumberFormatException e) {
+                System.out.print("");
+            }
+
+            if(choice == 4) run = false;
+
+        } while((choice < 1) || (choice > 3) && run);
+
+        if(run) {
+            switch(choice) {
+                case 1 -> price = 5;
+                case 2 -> price = 8;
+                case 3 -> price = 12;
+            }
+
+            if(hero.getGatheredMoney() >= price) {
+                hero.buy(price);
+                switch(choice) {
+                    case 1 -> hero.getInventory().addPotion(new Potion("Small healing potion", 25));
+                    case 2 -> hero.getInventory().addPotion(new Potion("Medium healing potion", 50));
+                    case 3 -> hero.getInventory().addPotion(new Potion("Big healing potion", 75));
+                }
+            }
+            else {
+                log.info("You don't have that much money!");
+            }
         }
     }
 
     public void upgradeSkill(Hero hero) {
-        System.out.println("Which skill to upgrade:");
+        log.info("Which skill to upgrade:");
         boolean run = true;
         String choose;
         int choice = 0;
@@ -82,7 +127,7 @@ public class Upgrade {
                 for(BuyableSkill skill: learnableSkillsWarrior) {
                     if(skill.getSkillPrice() > hero.getGatheredMoney()) {
                         System.out.print(ConsoleColors.WHITE);
-                        System.out.println("[" + index + "] " + skill.getSkillName() + ", " + skill.getSkillDamage() + " DMG " + "(" + skill.getSkillPrice() + "$)");
+                        log.info("[" + index + "] " + skill.getSkillName() + ", " + skill.getSkillDamage() + " DMG " + "(" + skill.getSkillPrice() + "$)");
                         System.out.print(ConsoleColors.RESET);
                     }
                     else {

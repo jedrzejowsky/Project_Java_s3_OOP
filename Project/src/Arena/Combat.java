@@ -1,6 +1,7 @@
 package Arena;
 
 import Enemies.Enemy;
+import Heroes.Hero;
 import Interfaces.Entity;
 import Log.*;
 import SkillsAndUpgrades.Skill;
@@ -80,6 +81,36 @@ public class Combat {
         int chosenEnemy = random.nextInt(enemies.size());
 
         return enemies.get(chosenEnemy);
+    }
+
+    //atak lub uzycie potiona
+    public void chooseAction(Hero hero, ArrayList<Enemy> enemies) {
+        String choose;
+        int choice = 0;
+
+        do {
+            log.info("What you want to do:");
+            log.info("[1] Attack");
+            log.info("[2] Use potion");
+
+            log.userChooses();
+            try {
+                choose = scanner.nextLine();
+                choice = Integer.parseInt(choose);
+            } catch(NumberFormatException e) {
+                System.out.print("");
+            }
+
+            switch(choice) {
+                case 1 -> hero.attack(enemies, chooseEnemy(enemies));
+                case 2 -> hero.getInventory().usePotion(hero);
+            }
+
+        } while(choice<1 || choice>2);
+
+        if(!hero.getInventory().wasPotionUsed() && !enemies.isEmpty()) {
+            hero.attack(enemies, chooseEnemy(enemies));
+        }
     }
 
 }
