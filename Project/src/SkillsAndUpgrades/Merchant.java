@@ -6,7 +6,7 @@ import Log.Log;
 import java.util.Scanner;
 
 public class Merchant {
-    boolean alreadyMet = false;
+    private boolean alreadyMet = false;
     Scanner scanner = new Scanner(System.in);
     Upgrade upgrade = new Upgrade();
     Log log = new Log();
