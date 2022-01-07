@@ -27,9 +27,39 @@ public class Log {
         System.out.print(ConsoleColors.RESET);
     }
 
-    public void availableMoney(Hero hero) {
+    public void heroMoneyAndHealth(Hero hero) {
+        System.out.print(ConsoleColors.RED_BOLD_BRIGHT);
+        System.out.println("Current HP: " + hero.getHealth() + " | Max HP: " + hero.getBaseHealth());
+        System.out.print(ConsoleColors.RESET);
         System.out.print(ConsoleColors.YELLOW_BOLD_BRIGHT);
         System.out.println("Available money: " + hero.getGatheredMoney() + "$");
         System.out.print(ConsoleColors.RESET);
+    }
+
+    public void potionsToBuy(Hero hero) {
+        if(hero.getGatheredMoney() < 5) {
+            System.out.print(ConsoleColors.WHITE);
+            System.out.println("[1] Small healing potion (25% HP, 5$)");
+            System.out.print(ConsoleColors.RESET);
+        }
+        else {
+            System.out.println("[1] Small healing potion (25% HP, 5$)");
+        }
+        if(hero.getGatheredMoney() < 8) {
+            System.out.print(ConsoleColors.WHITE);
+            System.out.println("[2] Medium healing potion (50% HP, 8$)");
+            System.out.print(ConsoleColors.RESET);
+        }
+        else {
+            System.out.println("[2] Medium healing potion (50% HP, 8$)");
+        }
+        if(hero.getGatheredMoney() < 12) {
+            System.out.print(ConsoleColors.WHITE);
+            System.out.println("[3] Big healing potion (75% HP, 12$)");
+            System.out.print(ConsoleColors.RESET);
+        }
+        else {
+            System.out.println("[3] Big healing potion (75% HP, 12$)");
+        }
     }
 }

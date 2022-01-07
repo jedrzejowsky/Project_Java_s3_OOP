@@ -6,7 +6,8 @@ public class Warrior extends Hero {
 
     public Warrior(String name) {
         super(name);
-        this.health = 50;
+        this.baseHealth = 50;
+        this.currentHealth = baseHealth;
         this.alive = true;
         skills();
     }
@@ -15,10 +16,6 @@ public class Warrior extends Hero {
     void skills() {
        addSkill(new Skill("Attack1", 10))
                .addSkill(new Skill("Attack2", 5));
-    }
-
-    public Skill getSkill() {
-        return skills.get(1);
     }
 
 }
