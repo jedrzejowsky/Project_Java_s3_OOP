@@ -1,7 +1,7 @@
 package Arena;
 
 import Enemies.Enemy;
-import Heroes.Hero;
+import Heroes.*;
 import Interfaces.Entity;
 import Log.*;
 import SkillsAndUpgrades.Skill;

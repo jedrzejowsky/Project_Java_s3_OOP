@@ -139,10 +139,10 @@ public class Upgrade {
         }
 
         if(hero.getGatheredMoney() >= 10 && run) {
-            hero.getAllSkills().get(choice-1).upgradeDamage(0.5f);
+            hero.getAllSkills().get(choice-1).upgradeDamage(2);
             hero.buy(10);
         }
-        else if(hero.getGatheredMoney()<10 && run){
+        else if(hero.getGatheredMoney() < 10 && run){
             log.info("Not enough money!");
         }
         else if(!run) {
@@ -185,7 +185,7 @@ public class Upgrade {
             } while((choice < 1) || (choice > learnableSkillsWarrior.size()) && run);
 
             if(run) {
-                if(learnableSkillsWarrior.get(choice-1).getSkillPrice()<=hero.getGatheredMoney()) {
+                if(learnableSkillsWarrior.get(choice-1).getSkillPrice() <= hero.getGatheredMoney()) {
                     log.info("Learned " + learnableSkillsWarrior.get(choice-1).getSkillName() + "!");
                     hero.buySkill(learnableSkillsWarrior.get(choice-1), learnableSkillsWarrior.get(choice-1).getSkillPrice());
                     learnableSkillsWarrior.remove(choice-1);
@@ -227,7 +227,7 @@ public class Upgrade {
             } while((choice < 1) || (choice > learnableSkillsMage.size()) && run);
 
             if(run) {
-                if(learnableSkillsMage.get(choice-1).getSkillPrice()<=hero.getGatheredMoney()) {
+                if(learnableSkillsMage.get(choice-1).getSkillPrice() <= hero.getGatheredMoney()) {
                     log.info("Learned " + learnableSkillsMage.get(choice-1).getSkillName() + "!");
                     hero.buySkill(learnableSkillsMage.get(choice-1), learnableSkillsMage.get(choice-1).getSkillPrice());
                     learnableSkillsMage.remove(choice-1);
@@ -288,14 +288,14 @@ public class Upgrade {
 
     //dodaje skille do listy, uzyc tylko raz
     public void skillsToTeach() {
-        learnableSkillsWarrior.add(new BuyableSkill("Throw axe", 20, 20));
-        learnableSkillsWarrior.add(new BuyableSkill("Spining attack", 30, 27));
+        learnableSkillsWarrior.add(new BuyableSkill("Axe Throw", 20, 20));
+        learnableSkillsWarrior.add(new BuyableSkill("Spinning Attack", 30, 27));
         learnableSkillsWarrior.add(new BuyableSkill("Decisive Strike", 50.5f, 38));
-        learnableSkillsMage.add(new BuyableSkill("Lighting spell", 35, 27));
-        learnableSkillsMage.add(new BuyableSkill("Dragon breath", 50, 36));
-        learnableSkillsMage.add(new BuyableSkill("Word of power", 70, 45));
+        learnableSkillsMage.add(new BuyableSkill("Lightning Spell", 35, 27));
+        learnableSkillsMage.add(new BuyableSkill("Dragon Breath", 50, 36));
+        learnableSkillsMage.add(new BuyableSkill("Word Of Power", 70, 45));
         learnableSkillsRogue.add(new BuyableSkill("Fire Arrow", 25, 25));
-        learnableSkillsRogue.add(new BuyableSkill("Dancing daggers", 35, 30));
+        learnableSkillsRogue.add(new BuyableSkill("Dancing Daggers", 35, 30));
         learnableSkillsRogue.add(new BuyableSkill("Backstab", 60, 43));
     }
 

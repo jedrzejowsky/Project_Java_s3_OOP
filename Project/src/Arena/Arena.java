@@ -17,9 +17,8 @@ public class Arena {
 
     ArrayList<Enemy> enemies = new ArrayList<>();
 
-    Hero hero = new Mage("Henry");
-
-    public void createArena() {
+    public void createArena(String className, String characterName) {
+        Hero hero = createHero(className, characterName);
         do {
             horde.create(enemies, defeatedHordes+1);
             log.info("Wave: " + (defeatedHordes+1));
@@ -47,6 +46,18 @@ public class Arena {
         log.info("Hordes defeated: " + defeatedHordes);
         log.info("Money gathered: " + hero.getGatheredMoney());
         log.gameOver();
+    }
+
+    public Hero createHero(String className, String characterName) {
+        if(className.equals("Warrior")) {
+            return new Warrior(characterName);
+        }
+        else if(className.equals("Mage")) {
+            return new Mage(characterName);
+        }
+        else {
+            return new Rogue(characterName);
+        }
     }
 
 }
