@@ -69,4 +69,15 @@ public class Log {
         System.out.print(ConsoleColors.RESET);
     }
 
+    public void waveNumber(int waveNum) {
+        System.out.println(ConsoleColors.BLUE_BOLD);
+        if(waveNum % 5 != 0) {
+            System.out.println("Wave: " + waveNum);
+        }
+        else {
+            System.out.println("BOSS WAVE");
+        }
+        System.out.print(ConsoleColors.RESET);
+    }
+
 }
