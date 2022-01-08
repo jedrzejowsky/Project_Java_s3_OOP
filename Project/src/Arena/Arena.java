@@ -16,7 +16,7 @@ public class Arena {
 
     ArrayList<Enemy> enemies = new ArrayList<>();
 
-    Hero hero = new Warrior("Henry");
+    Hero hero = new Mage("Henry");
 
     public void createArena() {
         do {

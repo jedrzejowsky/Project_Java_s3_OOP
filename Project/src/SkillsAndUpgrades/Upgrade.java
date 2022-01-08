@@ -95,13 +95,48 @@ public class Upgrade {
 
             } while((choice < 1) || (choice > hero.getAllSkills().size()) && run);
         }
+        else if(hero instanceof Mage) {
+            do {
+                int index = 1;
+                for(Skill skill: hero.getAllSkills()) {
+                    log.info("[" + index + "] " + skill.getSkillName());
+                    index++;
+                }
 
-        /*else if(hero instanceof Mage) {
-            System.out.println("spells");
+                log.info("[" + index + "] Leave");
+                log.userChooses();
+                try {
+                    choose = scanner.nextLine();
+                    choice = Integer.parseInt(choose);
+                } catch(NumberFormatException e) {
+                    System.out.print("");
+                }
+
+                if(choice == index) run = false;
+
+            } while((choice < 1) || (choice > hero.getAllSkills().size()) && run);
         }
         else if(hero instanceof Rogue) {
-            System.out.println("");
-        }*/
+            do {
+                int index = 1;
+                for(Skill skill: hero.getAllSkills()) {
+                    log.info("[" + index + "] " + skill.getSkillName());
+                    index++;
+                }
+
+                log.info("[" + index + "] Leave");
+                log.userChooses();
+                try {
+                    choose = scanner.nextLine();
+                    choice = Integer.parseInt(choose);
+                } catch(NumberFormatException e) {
+                    System.out.print("");
+                }
+
+                if(choice == index) run = false;
+
+            } while((choice < 1) || (choice > hero.getAllSkills().size()) && run);
+        }
 
         if(hero.getGatheredMoney() >= 10 && run) {
             hero.getAllSkills().get(choice-1).upgradeDamage(0.5f);
@@ -163,21 +198,95 @@ public class Upgrade {
                 log.info("");
             }
         }
+        else if(hero instanceof Mage) {
+            do {
+                int index = 1;
+                for(BuyableSkill skill: learnableSkillsMage) {
+                    if(skill.getSkillPrice() > hero.getGatheredMoney()) {
+                        System.out.print(ConsoleColors.WHITE);
+                        System.out.println("[" + index + "] " + skill.getSkillName() + ", " + skill.getSkillDamage() + " DMG " + "(" + skill.getSkillPrice() + "$)");
+                        System.out.print(ConsoleColors.RESET);
+                    }
+                    else {
+                        System.out.println("[" + index + "] " + skill.getSkillName() + ", " + skill.getSkillDamage() + " DMG " + "(" + skill.getSkillPrice() + "$)");
+                    }
+                    index++;
+                }
 
-        /*else if(hero instanceof Mage) {
+                log.info("[" + index + "] Leave");
+                log.userChooses();
+                try {
+                    choose = scanner.nextLine();
+                    choice = Integer.parseInt(choose);
+                } catch(NumberFormatException e) {
+                    System.out.print("");
+                }
+
+                if(choice == index) run = false;
+
+            } while((choice < 1) || (choice > learnableSkillsMage.size()) && run);
+
+            if(run) {
+                log.info("Learned " + learnableSkillsMage.get(choice-1).getSkillName() + "!");
+                hero.buySkill(learnableSkillsMage.get(choice-1), learnableSkillsMage.get(choice-1).getSkillPrice());
+                learnableSkillsMage.remove(choice-1);
+            }
+            else {
+                log.info("Not enough money!");
+            }
 
         }
         else if(hero instanceof Rogue) {
+            do {
+                int index = 1;
+                for(BuyableSkill skill: learnableSkillsRogue) {
+                    if(skill.getSkillPrice() > hero.getGatheredMoney()) {
+                        System.out.print(ConsoleColors.WHITE);
+                        System.out.println("[" + index + "] " + skill.getSkillName() + ", " + skill.getSkillDamage() + " DMG " + "(" + skill.getSkillPrice() + "$)");
+                        System.out.print(ConsoleColors.RESET);
+                    }
+                    else {
+                        System.out.println("[" + index + "] " + skill.getSkillName() + ", " + skill.getSkillDamage() + " DMG " + "(" + skill.getSkillPrice() + "$)");
+                    }
+                    index++;
+                }
 
-        }*/
+                log.info("[" + index + "] Leave");
+                log.userChooses();
+                try {
+                    choose = scanner.nextLine();
+                    choice = Integer.parseInt(choose);
+                } catch(NumberFormatException e) {
+                    System.out.print("");
+                }
+
+                if(choice == index) run = false;
+
+            } while((choice < 1) || (choice > learnableSkillsRogue.size()) && run);
+
+            if(run) {
+                log.info("Learned " + learnableSkillsRogue.get(choice-1).getSkillName() + "!");
+                hero.buySkill(learnableSkillsRogue.get(choice-1), learnableSkillsRogue.get(choice-1).getSkillPrice());
+                learnableSkillsRogue.remove(choice-1);
+            }
+            else {
+                log.info("Not enough money!");
+            }
+
+        }
     }
 
     //dodaje skille do listy, uzyc tylko raz
     public void skillsToTeach() {
-        learnableSkillsWarrior.add(new BuyableSkill("Attack3", 7, 20));
-        learnableSkillsWarrior.add(new BuyableSkill("Attack4", 8, 30));
-        learnableSkillsWarrior.add(new BuyableSkill("Attack5", 5.5f, 15));
-        //learnableSkillsMage.add();
-        //learnableSkillsRogue.add();
+        learnableSkillsWarrior.add(new BuyableSkill("Throw axe", 20, 20));
+        learnableSkillsWarrior.add(new BuyableSkill("Spining attack", 30, 27));
+        learnableSkillsWarrior.add(new BuyableSkill("Decisive Strike", 50.5f, 38));
+        learnableSkillsMage.add(new BuyableSkill("lighting spell", 35, 27));
+        learnableSkillsMage.add(new BuyableSkill("Dragon breath", 50, 36));
+        learnableSkillsMage.add(new BuyableSkill("Word of power", 70, 45));
+        learnableSkillsRogue.add(new BuyableSkill("Fire Arrow", 25, 25));
+        learnableSkillsRogue.add(new BuyableSkill("Dancing daggers", 35, 30));
+        learnableSkillsRogue.add(new BuyableSkill("Backstab", 60, 43));
+
     }
 }

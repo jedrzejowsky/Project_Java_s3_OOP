@@ -6,7 +6,7 @@ public class Warrior extends Hero {
 
     public Warrior(String name) {
         super(name);
-        this.baseHealth = 50;
+        this.baseHealth = 100;
         this.currentHealth = baseHealth;
         this.alive = true;
         skills();
@@ -14,8 +14,8 @@ public class Warrior extends Hero {
 
     @Override
     void skills() {
-       addSkill(new Skill("Attack1", 10))
-               .addSkill(new Skill("Attack2", 5));
+        addSkill(new Skill("Strong Attack", 10))
+                .addSkill(new Skill("Quick Attack", 7));
     }
 
 }
