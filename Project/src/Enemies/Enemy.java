@@ -13,7 +13,7 @@ public abstract class Enemy implements Entity {
     Random random = new Random();
     Log log = new Log();
 
-    Enemy() {
+    public Enemy() {
         this.name = getClass().getSimpleName();
         this.damage = 0;
         this.health = 0;
