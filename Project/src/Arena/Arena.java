@@ -2,6 +2,7 @@ package Arena;
 
 import Enemies.*;
 import Heroes.*;
+import Interfaces.Boss;
 import Log.*;
 import SkillsAndUpgrades.Merchant;
 
@@ -20,13 +21,18 @@ public class Arena {
 
     public void createArena() {
         do {
-            horde.create(enemies, horde.getHowManyEnemies());
+            horde.create(enemies, defeatedHordes+1);
             log.info("Wave: " + (defeatedHordes+1));
 
             do {
                 combat.chooseAction(hero, enemies);
                 if(!enemies.isEmpty()) {
-                    combat.attackingEnemy(enemies).attack(hero);
+                    if(enemies.get(0) instanceof Boss) {
+                        enemies.get(0).attack(hero);
+                    }
+                    else {
+                        combat.attackingEnemy(enemies).attack(hero);
+                    }
                 }
             } while(hero.isAlive() && !enemies.isEmpty());
 

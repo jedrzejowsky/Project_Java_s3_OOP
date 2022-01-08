@@ -87,6 +87,7 @@ public class Combat {
     public void chooseAction(Hero hero, ArrayList<Enemy> enemies) {
         String choose;
         int choice = 0;
+        boolean usedAttack = false;
 
         do {
             log.info("What you want to do:");
@@ -102,13 +103,16 @@ public class Combat {
             }
 
             switch(choice) {
-                case 1 -> hero.attack(enemies, chooseEnemy(enemies));
+                case 1 -> {
+                    hero.attack(enemies, chooseEnemy(enemies));
+                    usedAttack = true;
+                }
                 case 2 -> hero.getInventory().usePotion(hero);
             }
 
         } while(choice<1 || choice>2);
 
-        if(!hero.getInventory().wasPotionUsed() && !enemies.isEmpty()) {
+        if(!hero.getInventory().wasPotionUsed() && !enemies.isEmpty() && !usedAttack) {
             hero.attack(enemies, chooseEnemy(enemies));
         }
     }

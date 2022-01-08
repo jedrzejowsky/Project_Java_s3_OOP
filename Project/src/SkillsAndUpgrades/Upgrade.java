@@ -227,12 +227,17 @@ public class Upgrade {
             } while((choice < 1) || (choice > learnableSkillsMage.size()) && run);
 
             if(run) {
-                log.info("Learned " + learnableSkillsMage.get(choice-1).getSkillName() + "!");
-                hero.buySkill(learnableSkillsMage.get(choice-1), learnableSkillsMage.get(choice-1).getSkillPrice());
-                learnableSkillsMage.remove(choice-1);
+                if(learnableSkillsMage.get(choice-1).getSkillPrice()<=hero.getGatheredMoney()) {
+                    log.info("Learned " + learnableSkillsMage.get(choice-1).getSkillName() + "!");
+                    hero.buySkill(learnableSkillsMage.get(choice-1), learnableSkillsMage.get(choice-1).getSkillPrice());
+                    learnableSkillsMage.remove(choice-1);
+                }
+                else {
+                    log.info("Not enough money!");
+                }
             }
             else {
-                log.info("Not enough money!");
+                log.info("");
             }
 
         }
@@ -265,12 +270,17 @@ public class Upgrade {
             } while((choice < 1) || (choice > learnableSkillsRogue.size()) && run);
 
             if(run) {
-                log.info("Learned " + learnableSkillsRogue.get(choice-1).getSkillName() + "!");
-                hero.buySkill(learnableSkillsRogue.get(choice-1), learnableSkillsRogue.get(choice-1).getSkillPrice());
-                learnableSkillsRogue.remove(choice-1);
+                if(learnableSkillsRogue.get(choice-1).getSkillPrice() <= hero.getGatheredMoney()) {
+                    log.info("Learned " + learnableSkillsRogue.get(choice-1).getSkillName() + "!");
+                    hero.buySkill(learnableSkillsRogue.get(choice-1), learnableSkillsRogue.get(choice-1).getSkillPrice());
+                    learnableSkillsRogue.remove(choice-1);
+                }
+                else {
+                    log.info("Not enough money!");
+                }
             }
             else {
-                log.info("Not enough money!");
+                log.info("");
             }
 
         }
@@ -281,12 +291,12 @@ public class Upgrade {
         learnableSkillsWarrior.add(new BuyableSkill("Throw axe", 20, 20));
         learnableSkillsWarrior.add(new BuyableSkill("Spining attack", 30, 27));
         learnableSkillsWarrior.add(new BuyableSkill("Decisive Strike", 50.5f, 38));
-        learnableSkillsMage.add(new BuyableSkill("lighting spell", 35, 27));
+        learnableSkillsMage.add(new BuyableSkill("Lighting spell", 35, 27));
         learnableSkillsMage.add(new BuyableSkill("Dragon breath", 50, 36));
         learnableSkillsMage.add(new BuyableSkill("Word of power", 70, 45));
         learnableSkillsRogue.add(new BuyableSkill("Fire Arrow", 25, 25));
         learnableSkillsRogue.add(new BuyableSkill("Dancing daggers", 35, 30));
         learnableSkillsRogue.add(new BuyableSkill("Backstab", 60, 43));
-
     }
+
 }

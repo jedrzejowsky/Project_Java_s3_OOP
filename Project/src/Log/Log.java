@@ -62,4 +62,11 @@ public class Log {
             System.out.println("[3] Big healing potion (75% HP, 12$)");
         }
     }
+
+    public void goblinDroppedHundred() {
+        System.out.print(ConsoleColors.YELLOW_BOLD_BRIGHT);
+        System.out.println("Goblin dropped 100$");
+        System.out.print(ConsoleColors.RESET);
+    }
+
 }
