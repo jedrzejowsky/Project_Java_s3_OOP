@@ -90,6 +90,7 @@ public class Combat {
         boolean usedAttack = false;
 
         do {
+            log.info("");
             log.info("What you want to do:");
             log.info("[1] Attack");
             log.info("[2] Use potion");

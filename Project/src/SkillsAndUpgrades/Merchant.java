@@ -14,11 +14,11 @@ public class Merchant {
     public void upgrade(Hero hero) {
         if(!alreadyMet) {
             upgrade.skillsToTeach();
-            System.out.println("Hello! I can teach you how to fight or sell you some potions.");
+            System.out.println("Merchant: Hello! I can teach you how to fight or sell you some potions.");
             alreadyMet = true;
         }
         else {
-            System.out.println("You know the drill.");
+            System.out.println("Merchant: You know the drill.");
         }
 
         String choose;

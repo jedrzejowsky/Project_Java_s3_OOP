@@ -21,7 +21,7 @@ public class Arena {
         Hero hero = createHero(className, characterName);
         do {
             horde.create(enemies, defeatedHordes+1);
-            log.info("Wave: " + (defeatedHordes+1));
+            log.waveNumber(defeatedHordes+1);
 
             do {
                 combat.chooseAction(hero, enemies);
