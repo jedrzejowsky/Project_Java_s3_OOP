@@ -13,7 +13,7 @@ public class Rogue extends Hero {
 
     @Override
     void skills() {
-        addSkill(new Skill("Stab attack ", 14))
-                .addSkill(new Skill("Arrow hit", 10));
+        addSkill(new Skill("Stab Attack ", 14))
+                .addSkill(new Skill("Arrow Hit", 10));
     }
 }

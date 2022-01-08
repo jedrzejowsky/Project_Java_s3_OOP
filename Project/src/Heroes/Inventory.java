@@ -2,7 +2,6 @@ package Heroes;
 
 import SkillsAndUpgrades.Potion;
 import Log.*;
-import Interfaces.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;

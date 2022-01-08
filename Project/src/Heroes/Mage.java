@@ -13,7 +13,7 @@ public class Mage extends Hero {
 
     @Override
     void skills() {
-        addSkill(new Skill("Fire ball", 20))
-                .addSkill(new Skill("Water whip", 10));
+        addSkill(new Skill("Fireball", 20))
+                .addSkill(new Skill("Water Whip", 10));
     }
 }
