@@ -9,6 +9,8 @@ import java.util.Random;
 
 public class Horde {
     private int howManyEnemies = 5;
+    private float upgradeHealth = 0;
+    private float upgradeDamage = 0;
 
     public void create(ArrayList<Enemy> enemies, int waveNumber) {
         Random random = new Random();
@@ -53,9 +55,19 @@ public class Horde {
         return howManyEnemies;
     }
 
-    //dodaje dwoch wrogow co pokonana horde
-    public void setHowManyEnemies() {
-        howManyEnemies += 2;
+    //dodaje dwoch wrogow co dwie rundy
+    public void setHowManyEnemies(int waveNumber) {
+        if(waveNumber % 2 == 0) {
+            howManyEnemies += 2;
+        }
     }
+
+    public void upgrade(ArrayList<Enemy> enemies) {
+            for(Enemy enemy: enemies) {
+                enemy.upgradeHealthAndDamage(upgradeDamage, upgradeHealth);
+            }
+            upgradeDamage += 0.5f;
+            upgradeHealth += 0.5f;
+        }
 
 }

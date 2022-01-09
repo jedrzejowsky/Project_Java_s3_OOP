@@ -20,7 +20,7 @@ public class Upgrade {
             log.info("Max HP: " + hero.getBaseHealth());
         }
         else {
-            log.info("You don't have enough money");
+            log.notEnoughMoney();
         }
     }
 
@@ -63,7 +63,7 @@ public class Upgrade {
                 }
             }
             else {
-                log.info("You don't have that much money!");
+                log.notEnoughMoney();
             }
         }
     }
@@ -139,11 +139,12 @@ public class Upgrade {
         }
 
         if(hero.getGatheredMoney() >= 10 && run) {
+            log.skillUpgraded(hero.getAllSkills().get(choice-1));
             hero.getAllSkills().get(choice-1).upgradeDamage(2);
             hero.buy(10);
         }
         else if(hero.getGatheredMoney() < 10 && run){
-            log.info("Not enough money!");
+            log.notEnoughMoney();
         }
         else if(!run) {
             log.info("");
@@ -191,7 +192,7 @@ public class Upgrade {
                     learnableSkillsWarrior.remove(choice-1);
                 }
                 else {
-                    log.info("Not enough money!");
+                    log.notEnoughMoney();
                 }
             }
             else {
@@ -233,7 +234,7 @@ public class Upgrade {
                     learnableSkillsMage.remove(choice-1);
                 }
                 else {
-                    log.info("Not enough money!");
+                    log.notEnoughMoney();
                 }
             }
             else {
@@ -276,7 +277,7 @@ public class Upgrade {
                     learnableSkillsRogue.remove(choice-1);
                 }
                 else {
-                    log.info("Not enough money!");
+                    log.notEnoughMoney();
                 }
             }
             else {

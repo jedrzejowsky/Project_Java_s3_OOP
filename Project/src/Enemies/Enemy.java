@@ -47,4 +47,9 @@ public abstract class Enemy implements Entity {
         return random.nextInt(7-2)+2;
     }
 
+    public void upgradeHealthAndDamage(float upgradeDamage, float upgradeHealth) {
+        damage += upgradeDamage;
+        health += upgradeHealth;
+    }
+
 }

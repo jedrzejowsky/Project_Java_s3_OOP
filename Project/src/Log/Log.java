@@ -2,6 +2,7 @@ package Log;
 
 import Heroes.Hero;
 import Interfaces.Entity;
+import SkillsAndUpgrades.Skill;
 
 public class Log {
 
@@ -77,6 +78,18 @@ public class Log {
         else {
             System.out.println("BOSS WAVE");
         }
+        System.out.print(ConsoleColors.RESET);
+    }
+
+    public void skillUpgraded(Skill skill) {
+        System.out.print(ConsoleColors.BLUE_BOLD + ConsoleColors.BLUE_UNDERLINED);
+        System.out.println(skill.getSkillName() + " upgraded");
+        System.out.print(ConsoleColors.RESET);
+    }
+
+    public void notEnoughMoney() {
+        System.out.print(ConsoleColors.RED_BOLD + ConsoleColors.RED_UNDERLINED);
+        System.out.println("Not enough money!");
         System.out.print(ConsoleColors.RESET);
     }
 

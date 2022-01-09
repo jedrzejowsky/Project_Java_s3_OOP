@@ -21,6 +21,7 @@ public class Arena {
         Hero hero = createHero(className, characterName);
         do {
             horde.create(enemies, defeatedHordes+1);
+            horde.upgrade(enemies);
             log.waveNumber(defeatedHordes+1);
 
             do {
@@ -38,7 +39,7 @@ public class Arena {
             if(hero.isAlive()) {
                 defeatedHordes++;
                 merchant.upgrade(hero);
-                horde.setHowManyEnemies();
+                horde.setHowManyEnemies(defeatedHordes);
             }
         } while(hero.isAlive());
 
