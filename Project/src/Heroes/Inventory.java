@@ -8,14 +8,14 @@ import java.util.Scanner;
 
 public class Inventory {
     private boolean potionUsed;
-
-    Log log = new Log();
-    Scanner scanner = new Scanner(System.in);
-
-    protected ArrayList<Potion> potions = new ArrayList<>();
     private int numberOfSmallPotions = 0;
     private int numberOfMediumPotions = 0;
     private int numberOfBigPotions = 0;
+
+    protected ArrayList<Potion> potions = new ArrayList<>();
+
+    Log log = new Log();
+    Scanner scanner = new Scanner(System.in);
 
     public void addPotion(Potion potion) {
         potions.add(potion);

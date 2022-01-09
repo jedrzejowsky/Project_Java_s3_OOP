@@ -10,6 +10,7 @@ public abstract class Enemy implements Entity {
     protected String name;
     protected float damage;
     protected float health;
+
     Random random = new Random();
     Log log = new Log();
 

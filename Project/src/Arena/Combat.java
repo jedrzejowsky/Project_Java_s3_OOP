@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class Combat {
     private int chosenSkill;
+
     Scanner scanner = new Scanner(System.in);
     Log log = new Log();
 
