@@ -30,7 +30,7 @@ public class Merchant {
             log.heroMoneyAndHealth(hero);
             log.info("[1] Buy potion");
             log.info("[2] Learn new skill");
-            log.info("[3] Upgrade skill");
+            log.info("[3] Upgrade skill (+2.0DMG, 10$)");
             log.info("[4] Upgrade health (+1.0HP, 5$)");
             log.info("[5] Next Wave");
 
