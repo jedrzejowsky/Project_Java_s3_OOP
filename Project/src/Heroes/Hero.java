@@ -2,6 +2,7 @@ package Heroes;
 
 import Arena.Combat;
 import Enemies.Enemy;
+import Interfaces.Boss;
 import Interfaces.Entity;
 import Log.Log;
 import SkillsAndUpgrades.*;
@@ -15,7 +16,13 @@ public abstract class Hero implements Entity {
     protected boolean alive;
     protected int gatheredMoney = 0;
 
+    private int defeatedHordes = 0;
+    private int defeatedEnemies = 0;
+    private int defeatedBosses = 0;
+    private int allGatheredMoney = 0;
+
     protected ArrayList<Skill> skills = new ArrayList<>();
+
     Log log = new Log();
     Inventory inventory = new Inventory();
 
@@ -59,6 +66,13 @@ public abstract class Hero implements Entity {
         combat.combatLog(enemy, skills.get(combat.getChosenSkill()));
 
         if(enemy.getHealth() <= 0.0) {
+            if(enemy instanceof Boss) {
+                defeatedBosses += 1;
+            }
+            else {
+                defeatedEnemies += 1;
+            }
+
             log.died(enemy);
             collectMoney(enemy.dropMoney());
             enemies.remove(enemy);
@@ -86,6 +100,7 @@ public abstract class Hero implements Entity {
 
     public void collectMoney(int money) {
         gatheredMoney += money;
+        allGatheredMoney += money;
     }
 
     public void upgradeHealth(float upgrade, int price) {
@@ -107,6 +122,18 @@ public abstract class Hero implements Entity {
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public void hordeDefeated() {
+        defeatedHordes += 1;
+    }
+
+    public void statistics() {
+        log.info("");
+        log.info("During this run you've...");
+        log.info("Defeated " + defeatedHordes + " hordes.");
+        log.info("That means " + defeatedEnemies + " enemies and " + defeatedBosses + " bosses.");
+        log.info("Throughout this run you've collected " + allGatheredMoney + "$");
     }
 
     abstract void skills();

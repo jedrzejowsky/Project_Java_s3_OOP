@@ -9,20 +9,21 @@ import SkillsAndUpgrades.Merchant;
 import java.util.ArrayList;
 
 public class Arena {
+    int wave = 1;
+
+    ArrayList<Enemy> enemies = new ArrayList<>();
+
     Log log = new Log();
     Horde horde = new Horde();
     Merchant merchant = new Merchant();
     Combat combat = new Combat();
-    int defeatedHordes=0;
-
-    ArrayList<Enemy> enemies = new ArrayList<>();
 
     public void createArena(String className, String characterName) {
         Hero hero = createHero(className, characterName);
         do {
-            horde.create(enemies, defeatedHordes+1);
+            horde.create(enemies, wave);
             horde.upgrade(enemies);
-            log.waveNumber(defeatedHordes+1);
+            log.waveNumber(wave);
 
             do {
                 combat.chooseAction(hero, enemies);
@@ -37,15 +38,14 @@ public class Arena {
             } while(hero.isAlive() && !enemies.isEmpty());
 
             if(hero.isAlive()) {
-                defeatedHordes++;
+                hero.hordeDefeated();
+                wave++;
                 merchant.upgrade(hero);
-                horde.setHowManyEnemies(defeatedHordes);
+                horde.setHowManyEnemies(wave);
             }
         } while(hero.isAlive());
 
-        //statystyki przerzucic pozniej zeby pokazywalo z innej klasy
-        log.info("Hordes defeated: " + defeatedHordes);
-        log.info("Money gathered: " + hero.getGatheredMoney());
+        hero.statistics();
         log.gameOver();
     }
 

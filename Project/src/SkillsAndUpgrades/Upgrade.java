@@ -10,6 +10,7 @@ public class Upgrade {
     private ArrayList<BuyableSkill> learnableSkillsWarrior = new ArrayList<>();
     private ArrayList<BuyableSkill> learnableSkillsMage = new ArrayList<>();
     private ArrayList<BuyableSkill> learnableSkillsRogue = new ArrayList<>();
+
     Log log = new Log();
     Scanner scanner = new Scanner(System.in);
 
