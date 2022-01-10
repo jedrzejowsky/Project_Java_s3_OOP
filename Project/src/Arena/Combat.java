@@ -75,7 +75,7 @@ public class Combat {
 
     public void combatLog(Entity enemy, Skill skill) {
         if(enemy.getHealth()>0) {
-            log.info(enemy.getName() + " got hit for: " + skill.getSkillDamage() + " DMG. Current health " + enemy.getHealth());
+            log.info(enemy.getName() + " got hit for: " + skill.getSkillDamage() + " DMG. Current health " + enemy.getHealth() + " HP");
         }
     }
 
