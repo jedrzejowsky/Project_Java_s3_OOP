@@ -22,9 +22,9 @@ public class Kayran extends Enemy implements Boss {
 
     @Override
     public void skills() {
-        skills.add(new Skill("Ground slam", 20.5f));
-        skills.add(new Skill("Rock throw", 15));
-        skills.add(new Skill("Tentacle hit", 18.5f));
+        skills.add(new Skill("Ground Slam", 20.5f));
+        skills.add(new Skill("Rock Throw", 15));
+        skills.add(new Skill("Tentacle Hit", 18.5f));
     }
 
     @Override

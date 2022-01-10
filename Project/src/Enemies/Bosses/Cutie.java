@@ -22,7 +22,7 @@ public class Cutie extends Enemy implements Boss {
 
     @Override
     public void skills() {
-        skills.add(new Skill("Trunk attack", 15));
+        skills.add(new Skill("Trunk Attack", 15));
         skills.add(new Skill("Toss", 10));
         skills.add(new Skill("Trample", 17.5f));
     }

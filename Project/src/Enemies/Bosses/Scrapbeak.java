@@ -22,9 +22,9 @@ public class Scrapbeak extends Enemy implements Boss {
 
     @Override
     public void skills() {
-        skills.add(new Skill("Shovel slash", 16.5f));
-        skills.add(new Skill("Concertina throw", 12.5f));
-        skills.add(new Skill("Hammer hit", 26));
+        skills.add(new Skill("Shovel Slash", 16.5f));
+        skills.add(new Skill("Concertina Throw", 12.5f));
+        skills.add(new Skill("Hammer Hit", 26));
     }
 
     @Override

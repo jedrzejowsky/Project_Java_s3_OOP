@@ -22,9 +22,9 @@ public class Hag extends Enemy implements Boss {
 
     @Override
     public void skills() {
-        skills.add(new Skill("Pot attack", 12));
+        skills.add(new Skill("Pot Attack", 12));
         skills.add(new Skill("Tenderize", 25));
-        skills.add(new Skill("Spill boiling water", 16.5f));
+        skills.add(new Skill("Spill Boiling Water", 16.5f));
     }
 
     @Override

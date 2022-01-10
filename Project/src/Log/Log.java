@@ -93,4 +93,21 @@ public class Log {
         System.out.print(ConsoleColors.RESET);
     }
 
+    public void enemyInfoRed(String info) {
+        System.out.print(ConsoleColors.RED_BOLD_BRIGHT);
+        System.out.println(info);
+        System.out.print(ConsoleColors.RESET);
+    }
+
+    public void enemyInfoBlue(String info) {
+        System.out.print(ConsoleColors.BLUE_BOLD_BRIGHT);
+        System.out.println(info);
+        System.out.print(ConsoleColors.RESET);
+    }
+
+    public void infoYellow(String info) {
+        System.out.print(ConsoleColors.YELLOW_BOLD_BRIGHT);
+        System.out.println(info);
+        System.out.print(ConsoleColors.RESET);
+    }
 }
