@@ -36,7 +36,7 @@ public abstract class Enemy implements Entity {
 
     public void attack(Hero hero) {
         hero.damaged(damage);
-        log.info(hero.getName() + " got hit for: " + damage + ", curr heal: " + hero.getHealth());
+        log.info(hero.getName() + " got hit for: " + damage + " DMG. Current health " + hero.getHealth() + " HP");
 
         if(hero.getHealth() <= 0.0) {
             log.died(hero);
