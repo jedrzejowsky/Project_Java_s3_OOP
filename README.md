@@ -5,5 +5,4 @@ Projekt na obiektowe programowanie semestr 3
 -hermetyzacja i enkapsulacja
 -dziedziczenie
 -interfejs
--przeciążanie
 -abstrakcyjne
