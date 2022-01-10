@@ -1,11 +1,14 @@
 package Arena;
 
+import Enemies.Bestiary;
 import Enemies.Enemy;
 import Heroes.*;
 import Interfaces.Entity;
 import Log.*;
 import SkillsAndUpgrades.Skill;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -99,6 +102,16 @@ public class Combat {
             log.userChooses();
             try {
                 choose = scanner.nextLine();
+
+                try {
+                    while(choose.equalsIgnoreCase("bestiary")) {
+                        choose = "temp";
+                        this.findMethod("bestiary");
+                    }
+                } catch (Throwable exception) {
+                    System.out.println(exception.getMessage());
+                }
+
                 choice = Integer.parseInt(choose);
             } catch(NumberFormatException e) {
                 System.out.print("");
@@ -117,6 +130,23 @@ public class Combat {
         if(!hero.getInventory().wasPotionUsed() && !enemies.isEmpty() && !usedAttack) {
             hero.attack(enemies, chooseEnemy(enemies));
         }
+    }
+
+    private void findMethod(String method) throws Throwable {
+        try {
+            Method reflectedMethod = this.getClass().getDeclaredMethod(method);
+            reflectedMethod.setAccessible(true);
+            reflectedMethod.invoke(this);
+        } catch (NoSuchMethodException | IllegalAccessException exception) {
+            System.out.println("There's no method like " + method);
+        } catch (InvocationTargetException exception) {
+            throw new Exception(exception.getTargetException().getMessage());
+        }
+    }
+
+    private void bestiary() throws Exception {
+        Bestiary bestiary = new Bestiary();
+        bestiary.showEnemies();
     }
 
 }

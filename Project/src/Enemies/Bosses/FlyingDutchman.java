@@ -22,8 +22,8 @@ public class FlyingDutchman extends Enemy implements Boss {
 
     @Override
     public void skills() {
-        skills.add(new Skill("Cannonball shot", 22));
-        skills.add(new Skill("Exploding barrel", 18));
+        skills.add(new Skill("Cannonball Shot", 22));
+        skills.add(new Skill("Exploding Barrel", 18));
         skills.add(new Skill("Volley", 30.5f));
     }
 
